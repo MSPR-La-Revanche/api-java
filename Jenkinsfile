@@ -3,9 +3,10 @@ pipeline {
   stages {
     stage('Build') {
       steps {
-        echo 'Le build a commencé'
+        echo 'Le build a commencÃ©'
+        tool(name: 'maven', type: 'Maven')
         sh 'mvn clean install -Dlicense.skip=true'
-        echo 'Le build est terminé'
+        echo 'Le build est terminÃ©'
       }
     }
 
