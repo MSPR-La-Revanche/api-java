@@ -1,4 +1,4 @@
-# Maven - Unit Test
+# Java API
 ##  Contributeurs
 - Aurélien RICHE
 - Florian CRAMPE
