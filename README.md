@@ -1,4 +1,4 @@
-# API Java Maven
+# API Java
 ##  Contributeurs
 - Aurélien RICHE
 - Florian CRAMPE
