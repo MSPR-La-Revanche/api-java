@@ -10,38 +10,42 @@ import javax.xml.parsers.DocumentBuilderFactory;
 import java.io.File;
 
 public class XMLParser {
+
     public void parser(String path) {
+
+        Database database = new Database();
+
+        int id;
+        String name, value;
+
         try {
-            File inputFile = new File(path);
-            DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
-            DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
-            Document doc = dBuilder.parse(inputFile);
+
+            File file = new File(path);
+
+            DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
+
+            DocumentBuilder db = dbf.newDocumentBuilder();
+            Document doc = db.parse(file);
             doc.getDocumentElement().normalize();
-            System.out.println("Root element : " + doc.getDocumentElement().getNodeName());
-            NodeList nList = doc.getElementsByTagName("name"); // Change this to match database
-            System.out.println("--------------------");
 
-            for (int temp = 0; temp < nList.getLength(); temp++) {
-                Node nNode = nList.item(temp);
-                System.out.println("\nCurrent Element : " + nNode.getNodeName());
+            NodeList nodeList = doc.getElementsByTagName("data");
 
-                if (nNode.getNodeType() == Node.ELEMENT_NODE) {
-                    Element eElement = (Element) nNode;
-                    System.out.println("ID : "
-                            + eElement.getAttribute("ID"));
-                    System.out.println("Name : "
-                            + eElement
-                            .getElementsByTagName("name")
-                            .item(0)
-                            .getTextContent());
-                    System.out.println("Description : "
-                            + eElement
-                            .getElementsByTagName("description")
-                            .item(0)
-                            .getTextContent());
+            for(int itr = 0; itr < nodeList.getLength(); itr++) {
+
+                Node node = nodeList.item(itr);
+
+                if(node.getNodeType() == Node.ELEMENT_NODE) {
+
+                    Element eElement = (Element) node;
+                    id = Integer.parseInt(eElement.getElementsByTagName("uniqueID").item(0).getTextContent());
+                    name = eElement.getElementsByTagName("name").item(0).getTextContent();
+                    value = eElement.getElementsByTagName("value").item(0).getTextContent();
+
+                    database.InsertIntoDatabase("datas", id, name, value); // insert into table 'datas'
+
                 }
             }
-        } catch (Exception e) {
+        } catch(Exception e) {
             e.printStackTrace();
         }
     }
