@@ -47,8 +47,6 @@
             <version>8.0.23</version>
         </dependency>
 
-
-
     </dependencies>
     <build>
         <finalName>maven-unit-test</finalName>
