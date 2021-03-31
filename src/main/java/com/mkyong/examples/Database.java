@@ -19,6 +19,10 @@ public class Database {
         try {
             // Open connection
             System.out.println("Connecting to database...");
+
+            // Connection for prod database
+            // conn = DriverManager.getConnection("jdbc:mysql:http://15.236.210.166:8081/mspr", user, password);
+            // Connection for local database
             conn = DriverManager.getConnection("jdbc:mysql://localhost:8889/mspr", user, password);
             System.out.println("Connection success");
         } catch (SQLException se) {
@@ -28,14 +32,26 @@ public class Database {
         }
     }
 
-    public void InsertIntoDatabase(String table, int id, String name, String value) throws SQLException {
-        if(!connected) {
+    public void checkConnection() {
+        if (!connected) {
             DBconnect("root", "mypass123");
             connected = true;
         }
+    }
 
+    public void InsertIntoDatabase(String table, int id, String name, String value) throws SQLException {
+        checkConnection();
         stmt = conn.createStatement();
         stmt.executeUpdate("INSERT INTO " + table + " VALUES ('" + id + "', '" + name + "', '" + value + "')");
+    }
 
+    public void deleteFromDatabase(String table, int id) throws SQLException {
+        checkConnection();
+        stmt = conn.createStatement();
+        stmt.executeUpdate("DELE FROM " + table + " WHERE ID = " + id);
+    }
+
+    public int executeQuery(String query) throws SQLException {
+        return conn.createStatement().executeUpdate(query);
     }
 }

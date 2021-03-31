@@ -6,8 +6,7 @@ public class Main {
 
         XMLParser xmlParser = new XMLParser();
 
-        xmlParser.parser("./test.xml");
-
+        xmlParser.parser("./src/main/resources/test.xml");
     }
 
 }

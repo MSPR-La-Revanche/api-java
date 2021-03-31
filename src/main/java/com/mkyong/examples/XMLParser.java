@@ -19,7 +19,6 @@ public class XMLParser {
         String name, value;
 
         try {
-
             File file = new File(path);
 
             DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
@@ -42,7 +41,6 @@ public class XMLParser {
                     value = eElement.getElementsByTagName("value").item(0).getTextContent();
 
                     database.InsertIntoDatabase("datas", id, name, value); // insert into table 'datas'
-
                 }
             }
         } catch(Exception e) {
