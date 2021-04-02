@@ -21,9 +21,9 @@ public class Database {
             System.out.println("Connecting to database...");
 
             // Connection for prod database
-            // conn = DriverManager.getConnection("jdbc:mysql:http://15.236.210.166:8081/mspr", user, password);
+            conn = DriverManager.getConnection("jdbc:mysql://sql4.freemysqlhosting.net:3306/sql4403036", user, password);
             // Connection for local database
-            conn = DriverManager.getConnection("jdbc:mysql://localhost:8889/mspr", user, password);
+            // conn = DriverManager.getConnection("jdbc:mysql://localhost:8889/mspr", user, password);
             System.out.println("Connection success");
         } catch (SQLException se) {
             System.out.println("SQLException: " + se.getMessage());
@@ -48,7 +48,7 @@ public class Database {
     public void deleteFromDatabase(String table, int id) throws SQLException {
         checkConnection();
         stmt = conn.createStatement();
-        stmt.executeUpdate("DELE FROM " + table + " WHERE ID = " + id);
+        stmt.executeUpdate("DELETE FROM " + table + " WHERE ID = " + id);
     }
 
     public int executeQuery(String query) throws SQLException {
