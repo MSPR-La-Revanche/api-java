@@ -4,7 +4,6 @@
 - Florian CRAMPE
 - Junior TURLET
 - Alexandre DESSOLLE
-- Boris SONGEONS
 
 ## Configuration
 Clone the api-java repository (you can do it from your IDE)
